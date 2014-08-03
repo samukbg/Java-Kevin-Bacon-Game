@@ -44,13 +44,12 @@ Step-by-step example interaction:
         }
 ```
 
-	NOTE: This approach just works with SSD(Solid state drive), otherwise if using multiple threads to read from a single mechanical disk (or HDD) will hurt performance instead of improving it. The above happens because the disks mechanical head needs to keep seeking the next position to read. Using multiple threads means that when each thread gets a chance to run it will direct the head to a different section of the disk, thus making it bounce between disk areas inefficiently.
+_	NOTE: This approach just works with SSD(Solid state drive), otherwise if using multiple threads to read from a single mechanical disk (or HDD) will hurt performance instead of improving it. The above happens because the disks mechanical head needs to keep seeking the next position to read. Using multiple threads means that when each thread gets a chance to run it will direct the head to a different section of the disk, thus making it bounce between disk areas inefficiently.
 Source: 
 <a>http://stackoverflow.com/questions/10397075/using-threadpools-threading-for-reading-large-txt-files.</a> 
 
-	2) To read both of files, the small version and the original one, and stock certains parts of data like Actors and Movies i preferred to use regex.
-
-	To do it with the small file i used:
+   	2) To read both of files, the small version and the original one, and stock certains parts of data like Actors and Movies i preferred to use regex.
+        To do it with the small file i used:
 
 ```java
 		 
@@ -59,7 +58,7 @@ Source:
         	 movie = results[1];
 ```
 		 
-	And with the big file:
+        And with the big file:
 
 ```java
 		//Searching for actors
