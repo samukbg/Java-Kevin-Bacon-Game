@@ -1,5 +1,8 @@
 Java-Kevin-Bacon-Game
 =====================
+
+Author: Samuel Bezerra Gomes.
+
 This code was written in Java with javac version 1.7.0_45
 To run this code from the command line type
 
@@ -111,3 +114,5 @@ Source:
       System.out.println("\nYou loose! Do you want to try again? (Y or N)");
     }      
 ```
+
+Author: Samuel Bezerra Gomes.
