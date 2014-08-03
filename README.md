@@ -2,10 +2,12 @@ Java-Kevin-Bacon-Game
 =====================
 This code was written in Java with javac version 1.7.0_45
 To run this code from the command line type
+
 ```bash
 $ javac -Xlint src/Kevin.java
 $ java src/Kevin
 ```
+
 Note: If there is any problem to find the javac or java command in CMD on Windows, just set the right path for the JDK bin folder:
 
  set PATH=%PATH%;C:\Program Files (x86)\Java\jdk1.(VERSION)\bin
@@ -30,6 +32,7 @@ Step-by-step example interaction:
 	- The 2nd option is the most time consuming for reading the big IMDB file, because it will download the actors.list.gz file and after process it without using threads.
 
 	- The 3rd option is the fastest way to read the big IMDB file using a thread pool that uses all cores of the CPU to do the task. First it detects the available processors in the machine with the method Runtime.getRuntime().availableProcessors() that returns a int value. Then it starts the thread pool with a Runnable instance of the threadForBigFile job. 
+
 ```java
 	int numCores = Runtime.getRuntime().availableProcessors(); //Get the number of cores
         System.out.println("\nNumber of cores in processor: "+numCores);
@@ -40,6 +43,7 @@ Step-by-step example interaction:
             executorService.execute(processLine);
         }
 ```
+
 	NOTE: This approach just works with SSD(Solid state drive), otherwise if using multiple threads to read from a single mechanical disk (or HDD) will hurt performance instead of improving it. The above happens because the disks mechanical head needs to keep seeking the next position to read. Using multiple threads means that when each thread gets a chance to run it will direct the head to a different section of the disk, thus making it bounce between disk areas inefficiently.
 Source: 
 <a>http://stackoverflow.com/questions/10397075/using-threadpools-threading-for-reading-large-txt-files.</a> 
@@ -47,7 +51,7 @@ Source:
 	2) To read both of files, the small version and the original one, and stock certains parts of data like Actors and Movies i preferred to use regex.
 
 	To do it with the small file i used:
-	
+
 ```java
 		 
 		 String[] results = l.split("\\->");
@@ -56,7 +60,7 @@ Source:
 ```
 		 
 	And with the big file:
-	
+
 ```java
 		//Searching for actors
 		Pattern p = Pattern.compile("[^\\t(]*");   //searching for the first character of the line until the first parenthesis
@@ -85,16 +89,19 @@ Source:
 	        //removing blank space before the movie string
 	        movie = resultMovie.trim();
 ```
+
+   3) To find the shortest path in the data network i implemented the DijkstraAlgorithm class that takes the file.getGraph method from Kevin.class, the firstActor and the secondActor to search for the shortest path between the two actors. To do that i splitted all nodes into two different sets, then a node is moved to the settled set if and only if a shortest path from the first actor to this node was found.
+   4) The user must put a name for the 1st and 2nd actor that exists in the list files, otherwise the user gets the following error message:
     
-    3) To find the shortest path in the data network i implemented the DijkstraAlgorithm class that takes the file.getGraph method from Kevin.class, the firstActor and the secondActor to search for the shortest path between the two actors. To do that i splitted all nodes into two different sets, then a node is moved to the settled set if and only if a shortest path from the first actor to this node was found.
-    4) The user must put a name for the 1st and 2nd actor that exists in the list files, otherwise the user gets the following error message:
 ```java     
 	if (!graph.containsNode(fActor)) {
             System.out.println("\nSorry, '" + fActor + "' could not be found. Please choose another.");
             return;
 	}
 ```
-    5) At the end to implement a game program type, i compared the Bacon number that comes out from the result of the DijkstraAlgorithm class with a bet from the user:
+
+   5) At the end to implement a game program type, i compared the Bacon number that comes out from the result of the DijkstraAlgorithm class with a bet from the user:
+   
 ```java
     int result = DijkstraAlgorithm.distance/2;
     
