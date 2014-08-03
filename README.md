@@ -47,7 +47,9 @@ Source:
 	2) To read both of files, the small version and the original one, and stock certains parts of data like Actors and Movies i preferred to use regex.
 
 	To do it with the small file i used:
+	
 		 ```java
+		 
 		 String[] results = l.split("\\->");
 		 actor = results[0];
         	 movie = results[1];
