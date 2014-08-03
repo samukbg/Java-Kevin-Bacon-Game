@@ -54,7 +54,9 @@ Source:
 		 actor = results[0];
         	 movie = results[1];
 		 ```
+		 
 	And with the big file:
+	
 		```java
 		//Searching for actors
 		Pattern p = Pattern.compile("[^\\t(]*");   //searching for the first character of the line until the first parenthesis
